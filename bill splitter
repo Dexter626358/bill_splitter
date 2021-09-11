@@ -1,0 +1,39 @@
+# write your code here
+import random
+print('Enter the number of friends joining (including you):')
+try:
+    number_friends = int(input())
+except ValueError:
+    print('You need enter a number')
+else:
+    name_friends = []
+    if number_friends <= 0:
+        print("No one is joining for the party")
+    else:
+        print('Enter the name of every friend (including you), each on a new line:')
+        for i in range(number_friends):
+            name = str(input())
+            name_friends.append(name)
+        print('Enter the total bill value:')
+        try:
+            bill = int(input())
+        except ValueError:
+            print('You need enter a number')
+        else:
+            print('Do you want to use the "Who is lucky?" feature? Write Yes/No:')
+            lucky = str(input())
+            if lucky == 'Yes':
+                lucky_name = random.choice(name_friends)
+                print(f'{lucky_name} is the lucky one!')
+                bill_share = round(bill / (number_friends - 1), 2)
+                name_friends_dict = dict.fromkeys(name_friends, bill_share)
+                name_friends_dict[lucky_name] = 0
+                print(name_friends_dict)
+
+            else:
+                print("No one is going to be lucky")
+                bill_share = round(bill / number_friends, 2)
+                name_friends_dict = dict.fromkeys(name_friends, bill_share)
+                print(name_friends_dict)
+
+
